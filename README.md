@@ -1,5 +1,9 @@
 # Noetic Machine
 
+[![GitHub stars](https://img.shields.io/github/stars/PORTEMANN/noetic-machine?style=flat&color=blue)](https://github.com/PORTEMANN/noetic-machine/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/PORTEMANN/noetic-machine?style=flat&color=green)](https://github.com/PORTEMANN/noetic-machine/network/members)
+[![License](https://img.shields.io/github/license/PORTEMANN/noetic-machine?style=flat&color=orange)](LICENSE)
+
 > **Computational physics toolbox for SU(2) gauge models and topological defect structures.**  
 > Calibrated on the Bogomolny–Prasad–Sommerfield bound; predictive over three orders of magnitude.
 
