@@ -1,0 +1,35 @@
+{
+  "protocole": "Benchmark B1-rotation — vortex en précession, piège harmonique tournant",
+  "version": "1.0",
+  "date": "2026-08-01",
+  "auteur": "P. Portemann",
+  "objet": "valider l'implémentation du terme -Ω L_z et du splitting de Strang avant le couplage gyrotrope auto-consistant (κ = 1)",
+  "reformulation_b1": {
+    "constat": "Taylor-Green en rotation imposée est mal posé sur tore périodique : (1) une torsion uniforme T = 2Ω exige un flux quantifié Ω L² = π n (Dirac sur tore), soit Ω ≈ 7.7e-4 sur grille 64 — indétectable ; (2) les ondes inertielles sont des ondes de vorticité lisse, qu'un condensat scalaire sans vortex ne peut pas porter (u = ∇θ irrotationnel hors des cœurs)",
+    "decision": "B1-rotation = précession d'un vortex en piège harmonique ; référence exacte ω(Ω) = ω_p0 − Ω (changement de référentiel H_rot = H_lab − Ω L_z, pente −1 sans paramètre)"
+  },
+  "conditions_figees": {
+    "grille": "64^3 périodique, pas d'espace 1",
+    "dt": 0.05,
+    "pas": 12000,
+    "t_final": 600,
+    "gamma": 0.0,
+    "g": 1.0,
+    "piege": "V = (1/2) ω_t² r², ω_t = √2/10, rayon de Thomas-Fermi R = 10",
+    "vortex": "enroulement +1, cœur tanh(r), position initiale (2, 0), uniforme selon z",
+    "omega_liste": [0.0, 0.010, 0.020],
+    "graines": "aucune — conditions initiales analytiques déterministes",
+    "mesures": "position du vortex (minimum de densité dans r < 6, tranche z = 0, raffinement parabolique 3×3), E_kin, E_pot, E_int, L_z, E_rot = E − Ω L_z, tous les 20 pas"
+  },
+  "predictions_figees": {
+    "P1_loi_de_frame": "ω_mes(Ω) = ω_p0 − Ω : écart par point ≤ 0.10 ω_p0 aux trois Ω, et pente du ajustement linéaire ω vs Ω dans [−1.10, −0.90]",
+    "P2_fenetre_fetter": "ω_p0 ∈ [0.012, 0.045] (préfacteur 0.5 à 2 × (1/R²) ln(R/ξ), R = 10, ξ = 1/√2)",
+    "P3_signe": "ω_p0 > 0 (précession dans le sens de la circulation, enroulement +1)",
+    "P4_conservation": "max |E_rot(t) − E_rot(0)| / |E_rot(0)| ≤ 0.01 et max |L_z(t) − L_z(0)| / |L_z(0)| ≤ 0.01, sur chacun des trois runs"
+  },
+  "analyse_figee": {
+    "frequence": "ajustement linéaire de atan2(yv, xv) déroulé sur t ∈ [100, 600]",
+    "dev": "run dev_om010 (400 pas) : test technique de stabilité, exclu de l'analyse officielle",
+    "duree_fit": "t ≥ 100 pour écarter le transitoire acoustique de l'impression du vortex"
+  }
+}

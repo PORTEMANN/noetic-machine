@@ -1,0 +1,41 @@
+{
+ "id": "protocole_benchmark_B5_oscillateur",
+ "gel": "2026-08-01",
+ "objet": "Verifier que la brique memoire NUE (representation convolutionnelle explicite du noyau Mittag-Leffler d'Atangana-Baleanu) reproduit la solution de reference avec erreur relative < 1e-3 sur trois decades temporelles.",
+ "modele": {
+  "equation": "x'' + beta D^alpha_ABC x + w0^2 x = 0, x(0)=1, x'(0)=0",
+  "parametres": {
+   "alpha": 0.5,
+   "beta": 0.3,
+   "w0": 1.0
+  },
+  "noyau": "K_AB E_{1/2}(-sqrt(t)) = K_AB erfcx(sqrt(t)) (forme fermee exacte)",
+  "t_max": 100.0,
+  "echantillonnage": "31 temps log-espaces sur [0.1, 100] (3 decades)"
+ },
+ "simulateur_nue": {
+  "dt": 0.000625,
+  "scheme": "convolution trapezoidale explicite du noyau exact + Heun (RK2) sur (x,v)"
+ },
+ "reference": {
+  "nature": "solveur INDEPENDANT : representation diffusive de Bernstein du noyau (Q=128 modes exponentiels, quadrature uniforme en theta), propagateurs exponentiels exacts ; paire Richardson dt=2.5e-4/1.25e-4 extrapolee",
+  "ancrages": "Talbot 3 methodes aux t={0.1,1,10} ; pole+residu+queue algebrique exacte aux t>=63.1"
+ },
+ "predictions": {
+  "P1": "Identite du noyau : quadrature diffusive vs forme fermee erfcx, err <= 1e-6",
+  "P2a": "Ancrage court : reference vs Talbot triple-methode aux t={0.1,1,10}, err <= 1e-6",
+  "P2b": "Certificat Richardson de la reference : |gap|/A <= 1.5e-4",
+  "P2c": "Ancrage long : reference vs pole+residu+queue exacte aux t>=63.1, err rel <= 2.5e-2",
+  "P3": "Critere L3 : err relative NUE vs reference (enveloppe A_ref) <= 1e-3 aux 31 temps",
+  "P4": "Integrite : champs finis, |x_nue|/A_ref <= 1.2 (pas de croissance parasite)"
+ },
+ "seuils": {
+  "p1_noyau_max": 1e-06,
+  "p2a_ancrage_max": 1e-06,
+  "p2b_certificat_max": 0.00015,
+  "p2c_pole_max": 0.025,
+  "p3_err_max": 0.001,
+  "p4_croissance_max": 1.2
+ },
+ "verdict": "PASS integral si P1, P2a, P2b, P2c, P3, P4 sont satisfaits."
+}
