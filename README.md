@@ -15,9 +15,7 @@ A reproducible computational environment for testing field-theoretic structures.
 
 This is **not** a simulator. It does not answer "what happens if…" (trajectory). It answers "what exists, where, at what cost" (structure, regime, constitutive law).
 
----
-
-## Five confirmed predictions ( Georgi–Glashow SU(2) banc )
+## Five confirmed predictions (Georgi–Glashow SU(2) banc)
 
 | # | Prediction | Key result | Status |
 |---|---|---|---|
@@ -26,6 +24,28 @@ This is **not** a simulator. It does not answer "what happens if…" (trajectory
 | **P2** | Dirac charge quantisation | e·g = 2π exact, n = 1, ratio 1.000000 | ✅ Confirmed |
 | **P3** | Nucleus–ring coexistence + flux tube | ΦM = 4π = Φv(Q=2), confinement emergent | ✅ Confirmed |
 | **P4** | Phase diagram (g, v, ρ) | 2 regimes, boundary ρ* ≈ 0.75, auto-dual point | ✅ Confirmed |
+
+## Related Repositories
+
+| Repository | Role |
+|------------|------|
+| [**noetic-applications**](https://github.com/PORTEMANN/noetic-applications) | 14 experimental case studies (P7–P20) applying the finite-core solver to atomic, nuclear, particle, condensed-matter, and molecular physics |
+| [**spectral-triple-minimality**](https://github.com/PORTEMANN/spectral-triple-minimality) | Mathematical foundations — 4 theorems (dimension, k-bound, margin-3, non-uniqueness) and the KO-6 arithmetic law |
+| [**ko6-spectral-solver**](https://github.com/PORTEMANN/ko6-spectral-solver) | Spectral benchmarks B1–B3 (Taylor–Green, KdV, Ising 2D) |
+
+## Citation
+
+```bibtex
+@software{noetic_machine,
+  author = {Portemann, Patrice},
+  title = {Noetic Machine: A Non-Perturbative Finite-Core Solver},
+  url = {https://github.com/PORTEMANN/noetic-machine},
+  version = {1.0},
+  year = {2027}
+}
+```
+
+See [CITATION.bib](CITATION.bib) for cross-repository entries.
 
 ---
 
@@ -36,6 +56,7 @@ This is **not** a simulator. It does not answer "what happens if…" (trajectory
 ├── README.md                 # This file
 ├── LICENSE                   # MIT
 ├── MANUAL.md                 # Engineer's manual (full protocol)
+├── CITATION.bib              # Cross-repo BibTeX entries
 ├── src/
 │   ├── core/                 # Numerical cores (vortex, entanglement)
 │   ├── benchmarks/           # B1–B5: rotation, soliton, Landau, turbulence, oscillator
@@ -49,8 +70,6 @@ This is **not** a simulator. It does not answer "what happens if…" (trajectory
     ├── manual/               # Engineer's manual (full)
     └── results/              # P0–P4 result notes (markdown)
 ```
-
----
 
 ## Quick start
 
@@ -75,8 +94,6 @@ Every module must validate its discrete functional gradient against finite diffe
 assert np.allclose(grad_discrete, dx * grad_continuous, rtol=1e-2)
 ```
 
----
-
 ## Protocol discipline
 
 1. **Frozen protocol** — ansatz, grid conventions, tolerances, and verdict criteria are fixed before execution. No post-hoc adjustment.
@@ -85,8 +102,6 @@ assert np.allclose(grad_discrete, dx * grad_continuous, rtol=1e-2)
 4. **Fingerprints** — every artefact (script, data, figure) is SHA-256 hashed; verdict notes cite prior fingerprints.
 5. **Published failures** — negative verdicts and numerical artefacts are published with the same care as successes.
 
----
-
 ## Parameter classification
 
 | Class | Meaning | Examples |
@@ -94,8 +109,6 @@ assert np.allclose(grad_discrete, dx * grad_continuous, rtol=1e-2)
 | **Derived** | Output of the machine | C(ρ), spectra, radii, e·g = 2π |
 | **Measured** | Physico-chemical anchoring | α = 1/137.036, R_core = 3.04 l.u. |
 | **Assumed constitutive** | Structural choice, ontology | ρ = λ/e², Georgi–Glashow model itself |
-
----
 
 ## Author
 
